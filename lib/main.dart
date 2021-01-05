@@ -16,6 +16,7 @@ class _QuoteListState extends State<QuoteList> {
     //this list is off type quote not string because they are quotes now
     Quote(author: 'oscar wilde', text: 'quote1'),
     Quote(author: 'Jaxson', text: 'quote2'),
+    Quote(author: 'yaxson', text: 'quote3')
   ];
 
   @override
@@ -28,7 +29,15 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+        children: quotes
+            .map((quote) => QuoteCard(
+                quote: quote,
+                delete: () {
+                  setState(() {
+                    quotes.remove(quote);
+                  });
+                }))
+            .toList(),
       ),
     );
   }
